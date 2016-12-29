@@ -15,7 +15,8 @@ def send_email(subject, text, from_addr=From_addr, to_addr=To_addr, smtp_server=
     msg['From'] = from_addr
     msg['To'] = to_addr
     msg['Subject'] = Header(subject, 'utf-8').encode()
-    server = smtplib.SMTP(smtp_server, 25)
+    #server = smtplib.SMTP(smtp_server, 25)
+    server = smtplib.SMTP_SSL(smtp_server, 465)
     server.login(from_addr, password)
     server.sendmail(from_addr, [to_addr], msg.as_string())
     server.quit()
